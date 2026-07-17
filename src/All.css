@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --paper: #FBF8F2;
+  --paper-dim: #EFE9DA;
+  --ink: #211D17;
+  --ink-soft: #6E6457;
+  --rule: #DCD3C0;
+  --accent: #7A2E2E;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Source Serif 4', Georgia, serif;
+  /* Site-wide horizontal gutter — used consistently everywhere */
+  --gutter: clamp(20px, 5vw, 64px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  min-height: 100vh;
+  margin: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+/* ================================================================
+   NAV
+   ================================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--gutter);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.wordmark b {
+  font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--ink);
+  transition: color 0.15s;
+}
+.wordmark:hover b { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 30px; }
+.nav-links a { font-family: var(--body); font-size: 0.88rem; color: var(--ink-soft); transition: color 0.15s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-family: var(--body); font-style: italic; font-size: 0.88rem; color: var(--ink);
+  border-bottom: 1px solid var(--rule); padding-bottom: 2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav-cta:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ================================================================
+   LANDING: HERO
+   ================================================================ */
+.hero { padding: clamp(56px, 10vw, 104px) var(--gutter) 44px; }
+.hero-inner { max-width: 740px; }
+.hero h1 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.15;
+  margin: 0 0 20px; color: var(--ink);
+  animation: riseIn 0.5s ease 0.06s both;
+}
+.hero p {
+  font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-soft);
+  line-height: 1.65; margin: 0;
+  animation: riseIn 0.5s ease 0.12s both;
+}
+@keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ================================================================
+   LANDING: DIVIDER
+   ================================================================ */
+.divider { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 6px var(--gutter) 0; }
+.divider .line { flex: 1; height: 1px; background: var(--rule); }
+.divider .mark { width: 6px; height: 6px; border: 1px solid var(--accent); transform: rotate(45deg); flex-shrink: 0; }
+
+/* ================================================================
+   LANDING: PROJECT GRID
+   ================================================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 32px var(--gutter) 90px;
+}
+@media (max-width: 860px) { .project-grid { grid-template-columns: 1fr; } }
+
+/* ================================================================
+   CARD
+   ================================================================ */
+.card {
+  background: var(--paper); border: 1px solid var(--rule);
+  box-shadow: 0 1px 3px rgba(33,29,23,0.05);
+  opacity: 0; animation: riseIn 0.5s ease forwards;
+  animation-delay: calc(var(--card-index, 0) * 80ms + 80ms);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -20px rgba(33,29,23,0.25); border-color: #C9BEA6; }
+
+.tag { padding: 16px 22px; border-bottom: 1px solid var(--rule); }
+.tag span { font-family: var(--body); font-style: italic; font-size: 0.85rem; color: var(--accent); }
+
+/* ================================================================
+   FRAMED IMAGE (shared by card + content sections)
+   ================================================================ */
+.frame { padding: 10px; background: var(--paper); border: 1px solid var(--rule); width: 75%; margin-left: auto; margin-right: auto; }
+/* card frame has its own margin */
+.card .frame { margin: 20px auto 0; }
+/* video frames run ~1.3x wider than photo frames (capped at full column) */
+.frame--video { width: 97.5%; }
+
+.frame-photo {
+  aspect-ratio: 1 / 1; background: var(--paper-dim);
+  border: 1px solid var(--ink);
+  box-shadow: inset 0 0 0 5px var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.frame-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Natural variant: frame follows the image's own aspect ratio (no square crop) */
+.frame-photo--natural { aspect-ratio: auto; }
+.frame-photo--natural img { height: auto; object-fit: contain; }
+
+/* ================================================================
+   HERO CAROUSEL
+   Crossfading framed slideshow with diamond indicator dots.
+   ================================================================ */
+.hero-carousel { animation: riseIn 0.5s ease 0.12s both; }
+/* smaller than the standard 75% frame */
+.hero-carousel .frame { width: 40%; }
+.hero-carousel .frame-photo { position: relative; }
+.hero-carousel .frame-photo img {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.7s ease;
+}
+.hero-carousel .frame-photo img.active { opacity: 1; }
+.hero-carousel-dots {
+  display: flex; justify-content: center; gap: 12px;
+  margin-top: 14px;
+}
+.hero-carousel-dot {
+  width: 7px; height: 7px; padding: 0;
+  background: transparent; border: 1px solid var(--accent);
+  transform: rotate(45deg); cursor: pointer;
+  transition: background 0.2s;
+}
+.hero-carousel-dot:hover { background: var(--rule); }
+.hero-carousel-dot.active { background: var(--accent); }
+
+.frame-video {
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+}
+.frame-video iframe { width: 100%; height: 100%; border: none; display: block; }
+.frame-photo span {
+  font-family: var(--body); font-style: italic; letter-spacing: 0.04em;
+  font-size: 0.78rem; color: var(--ink-soft); opacity: 0.6;
+}
+
+/* ================================================================
+   CARD BODY
+   ================================================================ */
+.card-body { padding: 18px 22px 26px; }
+.card-body h3 { font-family: var(--display); font-weight: 700; font-size: 1.36rem; margin: 4px 0 10px; color: var(--ink); }
+.card-body .desc { color: var(--ink-soft); font-size: 0.96rem; line-height: 1.62; margin: 0 0 22px; }
+
+.spec { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.spec-col { border-left: 1px solid var(--rule); padding-left: 18px; }
+.spec-col:first-child { border-left: none; padding-left: 0; }
+.spec-col h4 { font-family: var(--body); font-style: italic; font-weight: 500; font-size: 0.82rem; color: var(--accent); margin: 0 0 9px; }
+.spec-col ul { list-style: none; margin: 0; padding: 0; }
+.spec-col li { font-size: 0.9rem; color: var(--ink); line-height: 1.55; padding-left: 16px; position: relative; margin-bottom: 7px; }
+.spec-col li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+/* ================================================================
+   LANDING: FOOTER
+   ================================================================ */
+footer {
+  padding: 24px var(--gutter); display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--body); font-style: italic; font-size: 0.82rem; color: var(--ink-soft);
+  border-top: 1px solid var(--rule);
+}
+footer a { color: var(--ink-soft); transition: color 0.15s; }
+footer a:hover { color: var(--accent); }
+
+/* ================================================================
+   TEMPLATE: PageHero
+   ================================================================ */
+.page-hero {
+  padding: clamp(56px, 10vw, 96px) var(--gutter) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.page-hero-inner { max-width: 800px; padding-bottom: 44px; }
+.page-hero-badge {
+  display: inline-block;
+  font-family: var(--body); font-style: italic; font-size: 0.85rem;
+  color: var(--accent); margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
+  margin: 0 0 18px; color: var(--ink);
+  animation: riseIn 0.45s ease 0.06s both;
+}
+.page-hero p {
+  font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--ink-soft);
+  line-height: 1.65; max-width: 640px; margin: 0;
+  animation: riseIn 0.45s ease 0.12s both;
+}
+
+/* ================================================================
+   TEMPLATE: SpecBar
+   ================================================================ */
+.spec-bar {
+  border-bottom: 1px solid var(--rule);
+  padding: 28px var(--gutter);
+  background: var(--paper-dim);
+}
+.spec-bar-inner { display: flex; gap: 0; }
+.spec-bar-col { flex: 1; }
+.spec-bar-col h4 {
+  font-family: var(--body); font-style: italic; font-weight: 500;
+  font-size: 0.82rem; color: var(--accent); margin: 0 0 10px;
+}
+.spec-bar-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.spec-bar-col li { font-size: 0.88rem; color: var(--ink); padding-left: 14px; position: relative; }
+.spec-bar-col li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+.spec-bar-divider { width: 1px; background: var(--rule); margin: 0 40px; flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .spec-bar-inner { flex-direction: column; gap: 20px; }
+  .spec-bar-divider { display: none; }
+}
+
+/* ================================================================
+   TEMPLATE: ContentSection
+
+   Each section is self-contained — it manages its own gutter padding.
+   The page wrapper (.page-body) adds NO horizontal padding so there
+   is no double-padding.
+
+   Layouts (responsive, automatic):
+     Desktop >=901px  — 2-col grid: text ~70% left, image ~30% right
+     Tablet 641-900px — 2-col grid: text left, image 280px right
+     Mobile <=640px   — single column: text first, image below
+     callout          — pull-quote strip with left accent border (unchanged)
+   ================================================================ */
+
+/* Outer section — full viewport width, self-guttered */
+.content-section {
+  /* content column is 80% of the page width (10% inset each side),
+     never narrower than the site gutter */
+  padding: 52px max(var(--gutter), 10%);
+  border-bottom: 1px solid var(--rule);
+}
+
+.content-section-heading {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem); color: var(--ink);
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Text-only (no image) — centered readable column */
+.content-section > .content-section-text {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-section-text p {
+  font-size: 1rem; color: var(--ink-soft); line-height: 1.75;
+  margin: 0 0 18px;
+}
+.content-section-text p:last-child { margin-bottom: 0; }
+
+/* Inline links inside section text */
+.content-section-text a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.content-section-text a:hover { color: var(--ink); }
+
+/* --- Image sections: unified responsive grid ------------------- */
+/* Mobile-first: single column, text then image */
+.content-section-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.content-section-body .content-section-text { align-self: normal; }
+
+.content-section-body .content-section-figure { margin: 0; max-width: none; }
+
+/* Wrapper laying out one or more figures side by side in the media column.
+   The column itself widens with the number of images via --figure-count. */
+.content-section-figures {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  min-width: 0;
+}
+.content-section-figures .content-section-figure {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.content-section-figure figcaption {
+  font-family: var(--body); font-style: italic; font-size: 0.82rem;
+  color: var(--ink-soft); margin-top: 10px; line-height: 1.5;
+}
+
+/* Tablet: text left, image 280px right */
+@media (min-width: 641px) and (max-width: 900px) {
+  .content-section-body {
+    grid-template-columns: 1fr min(calc(var(--figure-count, 1) * 300px), 65%);
+    gap: 32px;
+  }
+  .content-section-body .content-section-text p { max-width: none; }
+}
+
+/* Desktop: text ~70%, image ~30% */
+@media (min-width: 901px) {
+  /* Media column takes 30% per image (capped so text keeps a readable column) */
+  .content-section-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(calc(var(--figure-count, 1) * 35%), 68%));
+    gap: 48px;
+  }
+  .content-section-body .content-section-text p { max-width: none; }
+  .content-section-body .content-section-figure figcaption { text-align: center; }
+
+  /* Image-left variant: image 30% left, text 70% right.
+     DOM order stays text→image so mobile (single-col) always shows text first. */
+  .content-section-body--image-left {
+    grid-template-columns: minmax(0, min(calc(var(--figure-count, 1) * 30%), 68%)) minmax(0, 1fr);
+  }
+  .content-section-body--image-left .content-section-figure,
+  .content-section-body--image-left .content-section-figures { order: -1; }
+}
+
+/* --- Callout variant ------------------------------------------ */
+/* Callout is a full-width section that draws its own background strip.
+   It overrides the standard padding so the coloured block goes edge-to-edge,
+   then re-applies the gutter as inner padding. */
+.content-section--callout {
+  background: var(--paper-dim);
+  border-left: none;
+  border-bottom: none;
+  padding: 36px max(var(--gutter), 10%);
+}
+.content-section--callout .content-section-text {
+  border-left: 3px solid var(--accent);
+  padding-left: 24px;
+  max-width: 720px;
+}
+.content-section--callout .content-section-text p {
+  font-style: italic; font-size: 1.05rem; color: var(--ink); max-width: none;
+}
+
+/* ================================================================
+   TEMPLATE: ImageGrid
+
+   Full-width gallery strip of framed images with captions,
+   designed for four. Reuses .frame / .frame-photo and the
+   ContentSection figure + caption treatment.
+
+   Layouts (responsive, automatic):
+     Desktop >=901px  — 4-across
+     Tablet 641-900px — 2x2
+     Mobile <=640px   — single column
+   ================================================================ */
+.image-grid-heading { text-align: center; }
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+.image-grid .content-section-figure { margin: 0; min-width: 0; }
+.image-grid .content-section-figure figcaption { text-align: center; }
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 901px) {
+  .image-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+}
+
+/* PDF viewer inside ContentSection */
+.pdf-viewer {
+  margin-top: 24px;
+  border: 1px solid var(--rule);
+}
+.pdf-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+.pdf-open-link {
+  display: block;
+  padding: 10px 16px;
+  background: var(--paper-dim);
+  border-top: 1px solid var(--rule);
+  font-family: var(--body); font-style: italic; font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: right;
+  transition: color 0.15s;
+}
+.pdf-open-link:hover { color: var(--accent); }
+
+/* Bullet lists inside ContentSection children */
+.content-section ul.body-list {
+  list-style: none; margin: 0 0 18px; padding: 0;
+}
+.content-section ul.body-list li {
+  font-size: 1rem; color: var(--ink-soft); line-height: 1.65;
+  padding-left: 20px; position: relative; margin-bottom: 8px;
+}
+.content-section ul.body-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+/* ================================================================
+   TEMPLATE: ProjectNav
+   ================================================================ */
+.project-nav {
+  border-top: 1px solid var(--rule);
+  padding: 36px var(--gutter);
+}
+.project-nav-inner {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+}
+.project-nav-link {
+  display: flex; flex-direction: column; gap: 6px;
+  max-width: 45%;
+  transition: color 0.15s;
+}
+.project-nav-link--next { align-items: flex-end; }
+.project-nav-dir {
+  font-family: var(--body); font-size: 0.82rem; color: var(--ink-soft); font-style: italic;
+}
+.project-nav-title {
+  font-family: var(--display); font-weight: 700; font-size: 1rem; color: var(--ink);
+  transition: color 0.15s;
+}
+.project-nav-link:hover .project-nav-title { color: var(--accent); }
+
+@media (max-width: 500px) {
+  .project-nav-inner { flex-direction: column; gap: 28px; }
+  .project-nav-link, .project-nav-link--next { max-width: 100%; align-items: flex-start; }
+}
+
+/* ================================================================
+   PAGE BODY WRAPPER
+   No horizontal padding — each ContentSection gutters itself.
+   ================================================================ */
+.page-body {
+  /* intentionally empty — semantic wrapper only */
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  /* riseIn animations start at opacity 0 — restore visibility, but leave
+     carousel slide opacity alone so the active-slide logic still works */
+  .card, .hero h1, .hero p, .hero-carousel { opacity: 1 !important; }
+}
