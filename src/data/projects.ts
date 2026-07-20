@@ -1,3 +1,5 @@
+import { asset } from '../lib/asset'
+
 export interface Project {
     no: string;
     category: string;
@@ -9,6 +11,8 @@ export interface Project {
     toolsUsed: string[];
     skillsLearned: string[];
     imageSrc: string;
+    /** CSS object-position for the homepage tile image, e.g. "center 80%" to show more of the bottom. Defaults to centered. */
+    imagePosition?: string;
     path?: string;
 }
 
@@ -18,13 +22,14 @@ const projects: Project[] = [
     {
         no: "01",
         category: "Category One",
-        desktopName: "Project One Title",
-        mobileName: "Project One Title",
+        desktopName: "Embodied AI: Humanoid Robot for Bipedal Locomotion",
+        mobileName: "Embodied AI: Humanoid Robot for Bipedal Locomotion",
         description:
             "One or two sentences describing what this project is and the outcome you achieved.",
         toolsUsed: ["Tool A", "Tool B", "Tool C"],
         skillsLearned: ["Skill A", "Skill B"],
-        imageSrc: "/project-one/cover.svg",
+        imageSrc: asset("/project-one/ava-stand.jpg"),
+        imagePosition: "center 35%",
         path: "/project-one",
     },
     {
@@ -37,7 +42,7 @@ const projects: Project[] = [
             "One or two sentences describing what this project is and the outcome you achieved.",
         toolsUsed: ["Tool D", "Tool E"],
         skillsLearned: ["Skill C", "Skill D"],
-        imageSrc: "/project-two/cover.svg",
+        imageSrc: asset("/project-two/cover.svg"),
         path: "/project-two",
     },
 ];

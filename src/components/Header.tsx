@@ -7,7 +7,7 @@ function Header() {
                 <b>Evan's Project Portfolio</b>
             </a>
             <div className="nav-links">
-                <a className="nav-cta" href="https://www.linkedin.com/in/your-profile/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+                <a className="nav-cta" href="https://www.linkedin.com/in/evan-seki-1050ba260/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
             </div>
         </nav>
     )

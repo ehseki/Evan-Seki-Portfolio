@@ -4,12 +4,12 @@ import SpecBar from '../templates/SpecBar'
 import ContentSection from '../templates/ContentSection'
 import ImageGrid from '../templates/ImageGrid'
 import ProjectNav from '../templates/ProjectNav'
+import { asset } from '../lib/asset'
 
 export default function ProjectTwo() {
     return (
         <>
             <PageHero
-                category="Category Two"
                 title="Project Two Title"
                 summary="A one-sentence summary of the project that expands on the homepage card description."
             />
@@ -23,14 +23,14 @@ export default function ProjectTwo() {
                 <ContentSection
                     heading="Project Overview"
                     body="Describe the project, the problem, and the outcome here."
-                    image={{ src: "/project-two/detail-1.svg" }}
+                    image={{ src: asset("/project-two/detail-1.svg") }}
                 />
 
                 <ImageGrid
                     heading="Gallery"
                     images={[
-                        { src: "/project-two/detail-1.svg", caption: "Swap in real images — this grid supports up to four across." },
-                        { src: "/project-two/cover.svg", caption: "Second image caption." },
+                        { src: asset("/project-two/detail-1.svg"), caption: "Swap in real images — this grid supports up to four across." },
+                        { src: asset("/project-two/cover.svg"), caption: "Second image caption." },
                     ]}
                 />
 

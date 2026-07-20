@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --paper: #FBF8F2;
-  --paper-dim: #EFE9DA;
+  --paper: #f5f5f5;
+  --paper-dim: #e1dfd9;
   --ink: #211D17;
   --ink-soft: #6E6457;
   --rule: #DCD3C0;
   --accent: #7A2E2E;
-  --display: 'Playfair Display', Georgia, serif;
-  --body: 'Source Serif 4', Georgia, serif;
+  --display: 'Roboto', Arial, sans-serif;
+  --body: 'Roboto', Arial, sans-serif;
   /* Site-wide horizontal gutter — used consistently everywhere */
   --gutter: clamp(20px, 5vw, 64px);
 }
@@ -89,26 +89,46 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 860px) { .project-grid { grid-template-columns: 1fr; } }
 
 /* ================================================================
-   CARD
+   PROJECT TILE (homepage grid)
    ================================================================ */
-.card {
-  background: var(--paper); border: 1px solid var(--rule);
-  box-shadow: 0 1px 3px rgba(33,29,23,0.05);
+.project-tile-link { display: contents; }
+
+.project-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--paper-dim);
+  border: 1px solid var(--rule);
   opacity: 0; animation: riseIn 0.5s ease forwards;
   animation-delay: calc(var(--card-index, 0) * 80ms + 80ms);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -20px rgba(33,29,23,0.25); border-color: #C9BEA6; }
 
-.tag { padding: 16px 22px; border-bottom: 1px solid var(--rule); }
-.tag span { font-family: var(--body); font-style: italic; font-size: 0.85rem; color: var(--accent); }
+.project-tile-image {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.project-tile:hover .project-tile-image { transform: scale(1.04); }
+
+.project-tile-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; text-align: center;
+  background: rgba(33, 29, 23, 0.55);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.project-tile:hover .project-tile-overlay { opacity: 1; }
+
+.project-tile-overlay span {
+  font-family: var(--display); font-weight: 700; font-size: 1.3rem;
+  color: var(--paper);
+}
 
 /* ================================================================
    FRAMED IMAGE (shared by card + content sections)
    ================================================================ */
 .frame { padding: 10px; background: var(--paper); border: 1px solid var(--rule); width: 75%; margin-left: auto; margin-right: auto; }
-/* card frame has its own margin */
-.card .frame { margin: 20px auto 0; }
 /* video frames run ~1.3x wider than photo frames (capped at full column) */
 .frame--video { width: 97.5%; }
 
@@ -162,27 +182,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ================================================================
-   CARD BODY
-   ================================================================ */
-.card-body { padding: 18px 22px 26px; }
-.card-body h3 { font-family: var(--display); font-weight: 700; font-size: 1.36rem; margin: 4px 0 10px; color: var(--ink); }
-.card-body .desc { color: var(--ink-soft); font-size: 0.96rem; line-height: 1.62; margin: 0 0 22px; }
-
-.spec { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.spec-col { border-left: 1px solid var(--rule); padding-left: 18px; }
-.spec-col:first-child { border-left: none; padding-left: 0; }
-.spec-col h4 { font-family: var(--body); font-style: italic; font-weight: 500; font-size: 0.82rem; color: var(--accent); margin: 0 0 9px; }
-.spec-col ul { list-style: none; margin: 0; padding: 0; }
-.spec-col li { font-size: 0.9rem; color: var(--ink); line-height: 1.55; padding-left: 16px; position: relative; margin-bottom: 7px; }
-.spec-col li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
-
-/* ================================================================
    LANDING: FOOTER
    ================================================================ */
 footer {
   padding: 24px var(--gutter); display: flex; justify-content: space-between; align-items: center;
   font-family: var(--body); font-style: italic; font-size: 0.82rem; color: var(--ink-soft);
-  border-top: 1px solid var(--rule);
 }
 footer a { color: var(--ink-soft); transition: color 0.15s; }
 footer a:hover { color: var(--accent); }
@@ -192,7 +196,6 @@ footer a:hover { color: var(--accent); }
    ================================================================ */
 .page-hero {
   padding: clamp(56px, 10vw, 96px) var(--gutter) 0;
-  border-bottom: 1px solid var(--rule);
 }
 .page-hero-inner { max-width: 800px; padding-bottom: 44px; }
 .page-hero-badge {
@@ -212,11 +215,28 @@ footer a:hover { color: var(--accent); }
   animation: riseIn 0.45s ease 0.12s both;
 }
 
+/* PageHero image variant: title/summary and image each take half the row */
+.page-hero-media-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding-bottom: 44px;
+}
+.page-hero-media-row > * { flex: 1 1 0; min-width: 0; }
+.page-hero-media-row .page-hero-inner { max-width: none; padding-bottom: 0; }
+.page-hero-media-row p { max-width: none; }
+.media-plain { width: 85%; margin: 0 auto; }
+.page-hero-figure figcaption { text-align: center; }
+.content-section-figure--plain figcaption { text-align: center; }
+
+@media (max-width: 700px) {
+  .page-hero-media-row { flex-direction: column; align-items: stretch; gap: 24px; }
+}
+
 /* ================================================================
    TEMPLATE: SpecBar
    ================================================================ */
 .spec-bar {
-  border-bottom: 1px solid var(--rule);
   padding: 28px var(--gutter);
   background: var(--paper-dim);
 }
@@ -255,8 +275,8 @@ footer a:hover { color: var(--accent); }
   /* content column is 80% of the page width (10% inset each side),
      never narrower than the site gutter */
   padding: 52px max(var(--gutter), 10%);
-  border-bottom: 1px solid var(--rule);
 }
+.content-section--tight-top { padding-top: 12px; }
 
 .content-section-heading {
   font-family: var(--display); font-weight: 700;
@@ -393,7 +413,7 @@ footer a:hover { color: var(--accent); }
 }
 
 @media (min-width: 901px) {
-  .image-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+  .image-grid { grid-template-columns: repeat(var(--image-count, 4), minmax(0, 1fr)); gap: 24px; }
 }
 
 /* PDF viewer inside ContentSection */
@@ -433,7 +453,6 @@ footer a:hover { color: var(--accent); }
    TEMPLATE: ProjectNav
    ================================================================ */
 .project-nav {
-  border-top: 1px solid var(--rule);
   padding: 36px var(--gutter);
 }
 .project-nav-inner {
@@ -474,5 +493,5 @@ footer a:hover { color: var(--accent); }
   * { animation: none !important; transition: none !important; }
   /* riseIn animations start at opacity 0 — restore visibility, but leave
      carousel slide opacity alone so the active-slide logic still works */
-  .card, .hero h1, .hero p, .hero-carousel { opacity: 1 !important; }
+  .project-tile, .hero h1, .hero p, .hero-carousel { opacity: 1 !important; }
 }
