@@ -29,7 +29,7 @@ const projects: Project[] = [
         toolsUsed: ["Tool A", "Tool B", "Tool C"],
         skillsLearned: ["Skill A", "Skill B"],
         imageSrc: asset("/project-one/ava-stand.jpg"),
-        imagePosition: "center 35%",
+        imagePosition: "center 0%",
         path: "/project-one",
     },
     {

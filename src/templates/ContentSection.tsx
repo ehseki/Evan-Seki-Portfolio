@@ -20,6 +20,16 @@ interface ContentSectionProps {
     callout?: boolean;
     /** Reduces the top padding — use when this section continues directly from the one above it. */
     tightTop?: boolean;
+    /** Reduces the bottom padding — use when the next section should read as a continuation of this one. */
+    tightBottom?: boolean;
+    /** Stack multiple images vertically in the media column instead of side by side. */
+    stackImages?: boolean;
+    /** Vertically centers the text column relative to the (naturally-sized) image. */
+    centerText?: boolean;
+    /** Reduces the space between the heading and the body content below it. */
+    tightHeading?: boolean;
+    /** Bottom-aligns a shorter image against the bottom of the text column instead of the top. */
+    imageAlignEnd?: boolean;
 }
 
 export default function ContentSection({
@@ -32,6 +42,11 @@ export default function ContentSection({
     imageLeft = false,
     callout = false,
     tightTop = false,
+    tightBottom = false,
+    stackImages = false,
+    centerText = false,
+    tightHeading = false,
+    imageAlignEnd = false,
 }: ContentSectionProps) {
     const paragraphs = body
         ? (Array.isArray(body) ? body : [body])
@@ -42,7 +57,7 @@ export default function ContentSection({
     const hasMedia = !!(imageList.length > 0 || video);
 
     const mediaEl = imageList.length > 0 ? (
-        <div className="content-section-figures">
+        <div className={`content-section-figures${stackImages ? ' content-section-figures--stack' : ''}${imageAlignEnd ? ' content-section-figures--align-end' : ''}`}>
             {imageList.map((img) => {
                 const photo = (
                     <div className={`frame-photo${img.natural ? ' frame-photo--natural' : ''}`}>
@@ -77,13 +92,14 @@ export default function ContentSection({
         </figure>
     ) : null;
 
-    const bodyClass = `content-section-body${imageLeft ? ' content-section-body--image-left' : ''}`;
-    // Media column width scales with the number of images (see All.css --figure-count)
-    const bodyStyle = { ['--figure-count' as string]: Math.max(imageList.length, 1) };
+    const bodyClass = `content-section-body${imageLeft ? ' content-section-body--image-left' : ''}${centerText ? ' content-section-body--center-text' : ''}`;
+    // Media column width scales with the number of images (see All.css --figure-count) —
+    // stacked images share one column width regardless of count.
+    const bodyStyle = { ['--figure-count' as string]: stackImages ? 1 : Math.max(imageList.length, 1) };
 
     return (
-        <section className={`content-section${callout ? ' content-section--callout' : ''}${tightTop ? ' content-section--tight-top' : ''}`}>
-            {heading && <h2 className="content-section-heading">{heading}</h2>}
+        <section className={`content-section${callout ? ' content-section--callout' : ''}${tightTop ? ' content-section--tight-top' : ''}${tightBottom ? ' content-section--tight-bottom' : ''}`}>
+            {heading && <h2 className={`content-section-heading${tightHeading ? ' content-section-heading--tight' : ''}`}>{heading}</h2>}
 
             {hasMedia ? (
                 <div className={bodyClass} style={bodyStyle}>

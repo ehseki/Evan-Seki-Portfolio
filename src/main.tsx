@@ -10,11 +10,13 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <HashRouter>
             <Header />
-            <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/project-one" element={<ProjectOne />} />
-                <Route path="/project-two" element={<ProjectTwo />} />
-            </Routes>
+            <div className="app-shell">
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/project-one" element={<ProjectOne />} />
+                    <Route path="/project-two" element={<ProjectTwo />} />
+                </Routes>
+            </div>
         </HashRouter>
     </StrictMode>,
 )

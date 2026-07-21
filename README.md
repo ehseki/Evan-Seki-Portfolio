@@ -8,23 +8,26 @@ detail page per project.
 
 ```
 src/
-  main.tsx              entry point — route list lives here
+  main.tsx              entry point — route list lives here; renders Header full-width,
+                          everything else inside .app-shell (width-capped on large screens)
   Landing.tsx            homepage: hero, bio, project grid, footer
-  All.css                global styles / design system
+  All.css                global styles / design system (single stylesheet, no CSS modules)
+  lib/
+    asset.ts              prefixes a public/ path with Vite's base — use for every image src
   components/
     Header.tsx            top nav
     HeroCarousel.tsx       auto-advancing image carousel on the homepage
     PortfolioItem.tsx      one project card on the homepage grid
   templates/              reusable building blocks for project detail pages
-    PageHero.tsx           category badge + title + summary banner
-    SpecBar.tsx            tools/skills strip
+    PageHero.tsx           title + summary banner, optional half-width image
+    ProjectSidebar.tsx     sticky sidebar: Role (optional) / Year / Skills / Tools / Links
     ContentSection.tsx      text + image/video section (most flexible piece)
-    ImageGrid.tsx          multi-image gallery
     ProjectNav.tsx          prev/next links at the bottom of a project page
   data/
     projects.ts             one entry per project — drives the homepage cards
   pages/
-    ProjectOne.tsx, ProjectTwo.tsx   example project detail pages
+    ProjectOne.tsx           real project write-up
+    ProjectTwo.tsx           template version of the same structure — copy this for new projects
 public/                   images, PDFs, etc., one folder per project
 ```
 
@@ -32,8 +35,10 @@ public/                   images, PDFs, etc., one folder per project
 
 1. Add an object to the `projects` array in `src/data/projects.ts` (category, names,
    description, tools, skills, image, and a `path` like `/my-project`).
-2. Create `src/pages/MyProject.tsx`. Copy `ProjectOne.tsx` or `ProjectTwo.tsx` as a starting
-   point — it's just `PageHero` + `SpecBar` + one or more `ContentSection`s + `ProjectNav`.
+2. Create `src/pages/MyProject.tsx` by copying `ProjectTwo.tsx` — it's the template version
+   of the page structure: `PageHero` + a `.project-columns` wrapper (`ProjectSidebar` +
+   stacked `ContentSection`s, some followed by a side-by-side photo row) + `ProjectNav`.
+   Every image `src` should go through the `asset()` helper from `src/lib/asset.ts`.
 3. Add a `<Route path="/my-project" element={<MyProject />} />` in `src/main.tsx`.
 4. Drop your images/PDFs into a matching folder under `public/`.
 
@@ -56,13 +61,16 @@ npm run dev
 
 ## Deploying to GitHub Pages
 
-This repo includes `.github/workflows/deploy.yaml`, which builds and deploys automatically
+This repo includes `.github/workflows/deploy.yml`, which builds and deploys automatically
 on every push to `main`. To enable it on a new repo:
 
 1. Push this repo to GitHub (as `<your-username>.github.io` for a root domain, or any name
    for a project site under `<your-username>.github.io/<repo-name>`).
 2. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
 3. Push to `main` — the workflow builds with `npm run build` and deploys the `dist/` folder.
+4. If you're deploying under a subpath (a project site, not a root `<username>.github.io`
+   repo), set `base` in `vite.config.ts` to `/<repo-name>/` to match.
 
-Note: because routing is client-side, the workflow copies `dist/index.html` to
-`dist/404.html` so refreshing on a sub-route (e.g. `/project-one`) doesn't 404.
+Note: routing uses `HashRouter` (URLs like `/#/project-one`), specifically so that
+refreshing or linking directly to a sub-route works on GitHub Pages without any extra
+404-redirect workaround.

@@ -4,7 +4,7 @@ interface PageHeroProps {
     title: string;
     summary: string;
     /** Optional image shown beside the title, taking half the hero's width (stacks on mobile). */
-    image?: { src: string; caption?: string; alt?: string };
+    image?: { src: string; caption?: string; alt?: string; width?: string };
 }
 
 /**
@@ -33,7 +33,7 @@ export default function PageHero({ title, summary, image }: PageHeroProps) {
                     <p>{summary}</p>
                 </div>
                 <figure className="content-section-figure page-hero-figure">
-                    <div className="media-plain">
+                    <div className="media-plain" style={image.width ? { width: image.width } : undefined}>
                         <div className="frame-photo frame-photo--natural">
                             <img src={image.src} alt={image.alt ?? title} />
                         </div>
