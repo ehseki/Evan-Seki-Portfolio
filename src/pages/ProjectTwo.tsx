@@ -12,117 +12,55 @@ export default function ProjectTwo() {
     return (
         <>
             <PageHero
-                title="Project Two Title"
-                summary="A one-sentence summary of the project that expands on the homepage card description."
-                image={{ src: asset("/project-two/cover.svg"), caption: "Replace with a hero photo of the project.", width: "95%" }}
+                title=""
+                summary="Cephla is a lab automation company based out of Mountain View, California. They are most known for their robotic microscopes and open source software. I started working as a Mechanical Engineering Intern in March of 2025. I now work here full time as a Mechanical Engineer."
+                image={{ src: asset("/project-two/cephla-logo.jpg"), width: "60%" }}
+                gap="0px"
             />
 
             <div className="project-columns">
                 <ProjectSidebar
-                    year="2026"
-                    skills={["Skill A", "Skill B", "Skill C"]}
-                    tools={["Tool A", "Tool B"]}
+                    role="Mechanical Engineer"
+                    skills={["CAD", "GD&T", "FDM 3D Printing", "2D Engineering Drawings", "Soldering", "Project Managment", "PDM"]}
+                    tools={["SOLIDWORKS", "Python", "GitHub", "C++"]}
+                    links={[{ label: "Company Website", url: "https://www.cephla.com/" }
+                             ]}
                 />
                 <div className="project-body">
 
                     <ContentSection
                         tightTop
-                        heading="Project Overview"
+                        heading="Role Overview"
                         body={[
-                            "Paragraph one: what the project is, why it exists, and what problem it solves.",
-                            "Paragraph two: your specific role, the team (if any), and the outcome you achieved."
+                            "When I started working at Cephla I was soley focused on mechanical design, hardware production, and deployment. I created hardware solution to automate various lab processes. I have worked on a variety of projects, anything from high precision microscope components, to complex assemblies for microscope accessories. After graduating, I transistioned to a full time engineer. Now, in addition to mechanical design, I manage a team of interns and I am working on creating a proper PDM infastructure for the company. Check out some of the projects I have worked on below."
                         ]}
                     />
 
                     <ContentSection
-                        heading="Section Two Title"
-                        body={[
-                            "Describe the first major phase of work here — e.g. research, design, or initial prototyping.",
-                            "Add a second paragraph with more detail: decisions made, tools used, or challenges encountered."
-                        ]}
-                        stackImages
                         tightBottom
-                        images={[
-                            { src: asset("/project-two/detail-1.svg"), caption: "Placeholder — swap in a real photo.", framed: false, width: "85%", natural: true },
+                        heading="Lens Adapter"
+                        body={[
+                            "In microscopy, liquid immersion is a common technique used to increase resolution without changing objectives. By replacing the air gap between the sample and the lens with a medium of higher refractive index such as water or oil, the objective's numerical apeture is increased, resulting in a greater resolution. Shown below is a lens adapter and pump module I designed to enable controlled dispensing of the immersion fluid. ",
                         ]}
                     />
 
                     <section className="content-section" style={{ paddingTop: '20px', paddingBottom: '52px' }}>
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-col sm:flex-row gap-1">
                             <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
-                                <div className="media-plain" style={{ width: '100%' }}>
-                                    <div className="frame-photo frame-photo--natural">
-                                        <img src={asset("/project-two/detail-1.svg")} alt="Placeholder photo one" />
+                                <div className="media-plain" style={{ width: 'fit-content', margin: '0 auto' }}>
+                                    <div className="frame-photo frame-photo--natural" style={{ height: '340px', width: 'fit-content', background: 'transparent' }}>
+                                        <img src={asset("/project-two/Lense-Adapter.png")} alt="Placeholder photo one" style={{ height: '100%', width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
                                     </div>
                                 </div>
-                                <figcaption>Placeholder — swap in a real photo.</figcaption>
+                                <figcaption>Lens Adapter.</figcaption>
                             </figure>
                             <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
-                                <div className="media-plain" style={{ width: '100%' }}>
-                                    <div className="frame-photo frame-photo--natural">
-                                        <img src={asset("/project-two/cover.svg")} alt="Placeholder photo two" />
+                                <div className="media-plain" style={{ width: 'fit-content', margin: '0 auto' }}>
+                                    <div className="frame-photo frame-photo--natural" style={{ height: '340px', width: 'fit-content', background: 'transparent' }}>
+                                        <img src={asset("/project-two/Pump-system.png")} alt="Placeholder photo two" style={{ height: '100%', width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
                                     </div>
                                 </div>
-                                <figcaption>Placeholder — swap in a real photo.</figcaption>
-                            </figure>
-                        </div>
-                    </section>
-
-                    <ContentSection
-                        tightBottom
-                        heading="Section Three Title"
-                        body={[
-                            "Describe the next phase of the project — e.g. implementation, testing, or iteration.",
-                        ]}
-                    />
-
-                    <section className="content-section" style={{ paddingTop: '32px' }}>
-                        <figure className="content-section-figure content-section-figure--plain">
-                            <div className="flex gap-4">
-                                <div style={{ flex: 1 }}>
-                                    <div className="media-plain" style={{ width: '100%' }}>
-                                        <div className="frame-photo frame-photo--natural">
-                                            <img src={asset("/project-two/detail-1.svg")} alt="Placeholder photo three" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style={{ flex: 1 }}>
-                                    <div className="media-plain" style={{ width: '100%' }}>
-                                        <div className="frame-photo frame-photo--natural">
-                                            <img src={asset("/project-two/cover.svg")} alt="Placeholder photo four" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <figcaption>Shared caption describing both photos above.</figcaption>
-                        </figure>
-                    </section>
-
-                    <ContentSection
-                        tightBottom
-                        heading="Section Four Title"
-                        body={[
-                            "Wrap up with results, what you learned, or what you'd do differently next time.",
-                        ]}
-                    />
-
-                    <section className="content-section" style={{ paddingTop: '20px' }}>
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1 }}>
-                                <div className="media-plain" style={{ width: '100%' }}>
-                                    <div className="frame-photo frame-photo--natural">
-                                        <img src={asset("/project-two/detail-1.svg")} alt="Placeholder photo five" />
-                                    </div>
-                                </div>
-                                <figcaption>Placeholder — swap in a real photo.</figcaption>
-                            </figure>
-                            <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1 }}>
-                                <div className="media-plain" style={{ width: '100%' }}>
-                                    <div className="frame-photo frame-photo--natural">
-                                        <img src={asset("/project-two/cover.svg")} alt="Placeholder photo six" />
-                                    </div>
-                                </div>
-                                <figcaption>Placeholder — swap in a real photo.</figcaption>
+                                <figcaption>Pump Module.</figcaption>
                             </figure>
                         </div>
                     </section>
@@ -131,7 +69,8 @@ export default function ProjectTwo() {
             </div>
 
             <ProjectNav
-                prev={{ title: "Project One Title", path: "/project-one" }}
+                prev={{ title: "Embodied AI", path: "/embodied-ai" }}
+                next={{ title: "Yamaha EV conversion", path: "/yamaha-conversion" }}
             />
         </>
     )

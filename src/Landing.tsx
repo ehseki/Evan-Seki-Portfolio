@@ -38,11 +38,6 @@ function Landing() {
                     <PortfolioItem key={project.path ?? project.desktopName} {...project} index={i} />
                 ))}
             </main>
-
-            <footer>
-                <span>© 2026 Evan Seki</span>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            </footer>
         </>
     )
 }

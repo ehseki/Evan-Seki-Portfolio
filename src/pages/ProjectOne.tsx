@@ -10,17 +10,17 @@ export default function ProjectOne() {
         <>
             <PageHero
                 title="Embodied AI: Humanoid Robot for Bipedal Locomotion"
-                summary="This project was my senior capstone, or Major Qualifying Project (MQP), at WPI. I worked with four teammates to achieve the goal of creating a robotics platform capable of bipedal locomotion. I was personally responsible for redesigning the robot's lower body, creating sensor libraries for the robots firmware, and optimizing the robot's electrical system."
+                summary="This project was my senior capstone, or Major Qualifying Project (MQP), at WPI. I worked with four teammates to achieve the goal of creating a robotics platform capable of bipedal locomotion. I was personally responsible for redesigning the robot's lower body, constructing the robot's electrical harness, and creating sensor libraries for the robot's firmware."
                 image={{ src: asset("/project-one/ava-stand.jpg"), caption: "Ava standing via a hard-coded zero positon.", width: "95%" }}
             />
 
             <div className="project-columns">
                 <ProjectSidebar
                     year="2026"
-                    skills={["CAD", "GD&T", "DMFA", "FEA", "FDM 3D Printing", "SLA 3D Printing", "Topology", "Soldering", "Firmware Design"]}
-                    tools={["SOLIDWORKS", "C++", "Arduino"]}
-                     links={[{ label: "Final Paper", url: "https://digital.wpi.edu/concern/student_works/qj72pc618" },
-                             { label: "Project GitHub", url: "https://github.com/KoalbyMQP" }]}
+                    skills={["CAD", "GD&T", "DFMA", "FEA", "FDM 3D Printing", "SLA 3D Printing", "Topology", "Soldering", "Firmware Design"]}
+                    tools={["SOLIDWORKS", "C++", "Arduino", "GitHub"]}
+                    links={[{ label: "Final Paper", url: "https://digital.wpi.edu/concern/student_works/qj72pc618" },
+                             { label: "Project Repo", url: "https://github.com/KoalbyMQP" }]}
                 />
                 <div className="project-body">
 
@@ -36,7 +36,7 @@ export default function ProjectOne() {
                 heading="Mechanical Redesigns"
                 body={[
                     "When we first received the robot, its mechanical condition was in rough shape. Many of the robotic links showed signs of excessive wear such as creep and cracking. Moreover, after remanufacturing the links the lack of consistent hardware and accurate CAD models led to difficulties assembling the robot. Our team concluded that the robot simply would not be able to support our goal of reliable bipedal locomotion and that major mechanical redesigns were required.",
-                    "When redesigning Ava our team had two main focuses: proper DMFA (design for manufacturing and assembly) and structural optimization. In regard to DMFA, our team utilized a top down assembly approach to organize our workflow. We used the position of the motors to drive the base geometry of the robotic links. This approached allowed for proper fitment as we were able to use tools such as interference detection to ensure correct tolerancing. The base parts were then optimized for strength and weight using a topology study. This study was used as a guide to show where material could be removed. The finalized parts were then validated through a finite element analysis. Through our teams redesigns, the total weight of Ava was reduced by 5.11% and the stegnth increased by just over 20% (Von Mises Stress Criterion)."  
+                    "When redesigning Ava our team had two main focuses: proper DFMA (design for manufacturing and assembly) and structural optimization. In regard to DFMA, our team utilized a top down assembly approach to organize our workflow. We used the position of the motors to drive the base geometry of the robotic links. This approached allowed for proper fitment as we were able to use tools such as interference detection to ensure correct tolerancing. The base parts were then optimized for strength and weight using a topology study. This study was used as a guide to show where material could be removed. The finalized parts were then validated through a finite element analysis. Through our teams redesigns, the total weight of Ava was reduced by 5.11% and the stegnth increased by just over 20% (Von Mises Stress Criterion)."  
                 ]}
                 stackImages
                 tightBottom
@@ -46,24 +46,14 @@ export default function ProjectOne() {
             />
 
             <section className="content-section" style={{ paddingTop: '20px', paddingBottom: '52px' }}>
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
-                        <div className="media-plain" style={{ width: '100%' }}>
-                            <div className="frame-photo frame-photo--natural">
-                                <img src={asset("/project-one/thigh-redesign-process.png")} alt="Thigh redesign process" />
-                            </div>
+                <figure className="content-section-figure content-section-figure--plain">
+                    <div className="media-plain" style={{ width: '100%' }}>
+                        <div className="frame-photo frame-photo--natural">
+                            <img src={asset("/project-one/calf-and-thigh.png")} alt="Thigh and calf redesign process" />
                         </div>
-                        <figcaption style={{ whiteSpace: 'nowrap' }}>Thigh redesign showing Topology Optimization and FEA validation.</figcaption>
-                    </figure>
-                    <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
-                        <div className="media-plain" style={{ width: '100%' }}>
-                            <div className="frame-photo frame-photo--natural">
-                                <img src={asset("/project-one/calf-redesign-process.png")} alt="Calf redesign process" />
-                            </div>
-                        </div>
-                        <figcaption>Calf redesign showing Topology Optimization and FEA validation.</figcaption>
-                    </figure>
-                </div>
+                    </div>
+                    <figcaption>Thigh and calf redesign showing Topology Optimization and FEA validation.</figcaption>
+                </figure>
             </section>
 
             <ContentSection
@@ -108,7 +98,7 @@ export default function ProjectOne() {
             <section className="content-section" style={{ paddingTop: '20px' }}>
                 <div className="flex flex-col sm:flex-row gap-4">
                     <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1 }}>
-                        <div className="media-plain" style={{ width: '100%' }}>
+                        <div className="media-plain" style={{ width: '95%' }}>
                             <div className="frame-photo frame-photo--natural">
                                 <img src={asset("/project-one/communication-cycle.png")} alt="Complete communication cycle" />
                             </div>
@@ -116,7 +106,7 @@ export default function ProjectOne() {
                         <figcaption>Complete communication cycle.</figcaption>
                     </figure>
                     <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1 }}>
-                        <div className="media-plain" style={{ width: '100%' }}>
+                        <div className="media-plain" style={{ width: '105%' }}>
                             <div className="frame-photo frame-photo--natural">
                                 <img src={asset("/project-one/teensy-uml.png")} alt="Firmware UML Diagram" />
                             </div>
@@ -131,7 +121,7 @@ export default function ProjectOne() {
             </div>
 
             <ProjectNav
-                next={{ title: "Project Two Title", path: "/project-two" }}
+                next={{ title: "Cephla", path: "/cephla" }}
             />
         </>
     )

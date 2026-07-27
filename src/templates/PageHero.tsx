@@ -5,6 +5,8 @@ interface PageHeroProps {
     summary: string;
     /** Optional image shown beside the title, taking half the hero's width (stacks on mobile). */
     image?: { src: string; caption?: string; alt?: string; width?: string };
+    /** Gap between the text and image columns, e.g. "24px". Defaults to 48px. */
+    gap?: string;
 }
 
 /**
@@ -13,7 +15,7 @@ interface PageHeroProps {
  * Renders a large display title and one-sentence summary, optionally
  * alongside a half-width image.
  */
-export default function PageHero({ title, summary, image }: PageHeroProps) {
+export default function PageHero({ title, summary, image, gap }: PageHeroProps) {
     if (!image) {
         return (
             <header className="page-hero">
@@ -27,7 +29,7 @@ export default function PageHero({ title, summary, image }: PageHeroProps) {
 
     return (
         <header className="page-hero">
-            <div className="page-hero-media-row">
+            <div className="page-hero-media-row" style={gap ? { gap } : undefined}>
                 <div className="page-hero-inner">
                     <h1>{title}</h1>
                     <p>{summary}</p>
