@@ -11,7 +11,7 @@ function Landing() {
                     <div className="w-1/2">
                         <div className="hero-inner">
                             <p>
-                                I am Evan Seki. In may of 2026 I graduated from Worcester Polytechnic Institute with a Bachelor's of Science in Robotics Engineering and a Bachelor's of Science in Mechanical Engineering. I am passionate and curious about mechanical design and robotic firmware. Currently I am a mechanical Engineer for Cephla. Check out my portfolio below.
+                                I am Evan Seki. In May of 2026 I graduated from Worcester Polytechnic Institute with a Bachelor's of Science in Robotics Engineering and a Bachelor's of Science in Mechanical Engineering. I am passionate and curious about mechanical design and robotic firmware. Currently I am a Mechanical Engineer for Cephla. Check out my portfolio below.
                             </p>
                         </div>
                     </div>
