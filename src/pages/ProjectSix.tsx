@@ -52,7 +52,7 @@ export default function ProjectSix() {
                     <ContentSection
                         heading="Presidents Award"
                         body={[
-                            "The President's IQP Award is WPI's way of recognizing the best Interactive Qualifying Project completed each year. Out of the ~70 IQP projects submitted for consideration, our project was selected as one of five finalist. In January of 2026, we present our work to a panel of judges that included the university president. After a day of listening the other amazing finalist we were selected as one of two winning groups."
+                            "The President's IQP Award is WPI's way of recognizing the best Interactive Qualifying Project completed each year. Out of the ~70 IQP projects submitted for consideration, our project was selected as one of five finalist. In January of 2026, we presented our work to a panel of judges that included the university president. After a day of listening to the other amazing finalist we were selected as one of two winning groups."
                         ]}
                     />
 

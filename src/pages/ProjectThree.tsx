@@ -11,16 +11,16 @@ export default function ProjectThree() {
     return (
         <>
             <PageHero
-                title="Project Three Title"
-                summary="A one-sentence summary of the project that expands on the homepage card description."
-                image={{ src: asset("/project-three/cover.svg"), caption: "Replace with a hero photo of the project.", width: "95%" }}
+                title="Yamaha TTR-125 Electric Vehicle Conversion"
+                summary="For this project I aim to create a street legal commuter vehicle that can keep up with the flow of traffic on every public road apart from highways."
+                image={{ src: asset("/project-three/Yamaha-mechanically-finished.jpg"), caption: "Mark 1 of the conversion mechanically finished.", width: "95%" }}
             />
 
             <div className="project-columns">
                 <ProjectSidebar
                     year="2026"
-                    skills={["Skill A", "Skill B", "Skill C"]}
-                    tools={["Tool A", "Tool B"]}
+                    skills={["Topology", "CAD", "FEA", "Battery Building", "Soldering", "FDM 3D Printing"]}
+                    tools={["SOLIDWORKS"]}
                 />
                 <div className="project-body">
 
@@ -28,21 +28,7 @@ export default function ProjectThree() {
                         tightTop
                         heading="Project Overview"
                         body={[
-                            "Paragraph one: what the project is, why it exists, and what problem it solves.",
-                            "Paragraph two: your specific role, the team (if any), and the outcome you achieved."
-                        ]}
-                    />
-
-                    <ContentSection
-                        heading="Section Two Title"
-                        body={[
-                            "Describe the first major phase of work here — e.g. research, design, or initial prototyping.",
-                            "Add a second paragraph with more detail: decisions made, tools used, or challenges encountered."
-                        ]}
-                        stackImages
-                        tightBottom
-                        images={[
-                            { src: asset("/project-three/cover.svg"), caption: "Placeholder — swap in a real photo.", framed: false, width: "85%", natural: true },
+                            "During the summer of 2025 I completed a working prototype of the conversion. I was able to ride the bike around the block displaying a working drivetrain and electrcial system. I have since dismattled the prototype as I am overhauling the bike's mechanical features. However, the battery packs I designed have proven effective and will remain in use."
                         ]}
                     />
 
@@ -51,59 +37,50 @@ export default function ProjectThree() {
                             <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
                                 <div className="media-plain" style={{ width: '100%' }}>
                                     <div className="frame-photo frame-photo--natural">
-                                        <img src={asset("/project-three/cover.svg")} alt="Placeholder photo one" />
+                                        <img src={asset("/project-three/yamaha-mark1-cad.webp")} alt="Mark 1 completed CAD." />
                                     </div>
                                 </div>
-                                <figcaption>Placeholder — swap in a real photo.</figcaption>
+                                <figcaption>Mark 1 completed CAD.</figcaption>
                             </figure>
                             <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
                                 <div className="media-plain" style={{ width: '100%' }}>
-                                    <div className="frame-photo frame-photo--natural">
-                                        <img src={asset("/project-three/cover.svg")} alt="Placeholder photo two" />
+                                    <div className="frame-photo" style={{ aspectRatio: '888 / 802' }}>
+                                        <img src={asset("/project-three/yamaha-no-battery.webp")} alt="Mark 1 completed bike without battery." />
                                     </div>
                                 </div>
-                                <figcaption>Placeholder — swap in a real photo.</figcaption>
+                                <figcaption>Mark 1 completed bike without battery.</figcaption>
                             </figure>
                         </div>
                     </section>
 
-                    <ContentSection
-                        tightBottom
-                        heading="Section Three Title"
-                        body={[
-                            "Describe the next phase of the project — e.g. implementation, testing, or iteration.",
-                        ]}
-                    />
-
-                    <section className="content-section" style={{ paddingTop: '32px' }}>
-                        <figure className="content-section-figure content-section-figure--plain">
-                            <div className="flex gap-4">
-                                <div style={{ flex: 1 }}>
-                                    <div className="media-plain" style={{ width: '100%' }}>
-                                        <div className="frame-photo frame-photo--natural">
-                                            <img src={asset("/project-three/cover.svg")} alt="Placeholder photo three" />
-                                        </div>
+                    <section className="content-section" style={{ paddingTop: '20px', paddingBottom: '52px' }}>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
+                                <div className="media-plain" style={{ width: '100%' }}>
+                                    <div className="frame-photo frame-photo--natural">
+                                        <img src={asset("/project-three/battery-cad.png")} alt="Battery pack in CAD without accessories." />
                                     </div>
                                 </div>
-                                <div style={{ flex: 1 }}>
-                                    <div className="media-plain" style={{ width: '100%' }}>
-                                        <div className="frame-photo frame-photo--natural">
-                                            <img src={asset("/project-three/cover.svg")} alt="Placeholder photo four" />
-                                        </div>
+                                <figcaption>Battery pack in CAD without accessories.</figcaption>
+                            </figure>
+                            <figure className="content-section-figure content-section-figure--plain" style={{ flex: 1, minWidth: 0 }}>
+                                <div className="media-plain" style={{ width: '100%' }}>
+                                    <div className="frame-photo" style={{ aspectRatio: '780 / 1060' }}>
+                                        <img src={asset("/project-three/compressed.webp")} alt="Assembled battery pack without accessories." />
                                     </div>
                                 </div>
-                            </div>
-                            <figcaption>Shared caption describing both photos above.</figcaption>
-                        </figure>
+                                <figcaption>Assembled battery pack without accessories.</figcaption>
+                            </figure>
+                            
+                        </div>
+                        
                     </section>
 
-                    <ContentSection
-                        tightBottom
-                        heading="Section Four Title"
-                        body={[
-                            "Wrap up with results, what you learned, or what you'd do differently next time.",
-                        ]}
-                    />
+                    <section className="content-section" style={{ paddingTop: '4px' }}>
+                        <p style={{ textAlign: 'center', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', margin: 0 }}>
+                            More updates to come!
+                        </p>
+                    </section>
 
                 </div>
             </div>

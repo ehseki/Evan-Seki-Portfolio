@@ -12,11 +12,8 @@ interface ContentSectionProps {
         a borderless image with a centered caption, matching the PageHero image style.
         `width` overrides the default size for a `framed: false` image, e.g. "50%". */
     images?: { src: string; caption?: string; natural?: boolean; framed?: boolean; width?: string }[];
-    video?: { youtubeId: string; caption?: string };
     /** Desktop only: place the media on the left, text on the right. Mobile always shows text first. */
     imageLeft?: boolean;
-    /** kept for backwards compat — ignored */
-    layout?: 'default' | 'aside';
     callout?: boolean;
     /** Reduces the top padding — use when this section continues directly from the one above it. */
     tightTop?: boolean;
@@ -38,7 +35,6 @@ export default function ContentSection({
     children,
     image,
     images,
-    video,
     imageLeft = false,
     callout = false,
     tightTop = false,
@@ -54,7 +50,7 @@ export default function ContentSection({
 
     const imageList = images ?? (image ? [image] : []);
 
-    const hasMedia = !!(imageList.length > 0 || video);
+    const hasMedia = imageList.length > 0;
 
     const mediaEl = imageList.length > 0 ? (
         <div className={`content-section-figures${stackImages ? ' content-section-figures--stack' : ''}${imageAlignEnd ? ' content-section-figures--align-end' : ''}`}>
@@ -76,20 +72,6 @@ export default function ContentSection({
                 )
             })}
         </div>
-    ) : video ? (
-        <figure className="content-section-figure">
-            <div className="frame frame--video">
-                <div className="frame-video">
-                    <iframe
-                        src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                        title={video.caption ?? heading ?? 'Video'}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
-                </div>
-            </div>
-            {video.caption && <figcaption>{video.caption}</figcaption>}
-        </figure>
     ) : null;
 
     const bodyClass = `content-section-body${imageLeft ? ' content-section-body--image-left' : ''}${centerText ? ' content-section-body--center-text' : ''}`;

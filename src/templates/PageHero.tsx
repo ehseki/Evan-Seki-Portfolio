@@ -4,7 +4,7 @@ interface PageHeroProps {
     title: string;
     summary: string;
     /** Optional image shown beside the title, taking half the hero's width (stacks on mobile). */
-    image?: { src: string; caption?: string; alt?: string; width?: string };
+    image?: { src: string; caption?: string; alt?: string; width?: string; transparent?: boolean };
     /** Gap between the text and image columns, e.g. "24px". Defaults to 48px. */
     gap?: string;
 }
@@ -36,7 +36,7 @@ export default function PageHero({ title, summary, image, gap }: PageHeroProps) 
                 </div>
                 <figure className="content-section-figure page-hero-figure">
                     <div className="media-plain" style={image.width ? { width: image.width } : undefined}>
-                        <div className="frame-photo frame-photo--natural">
+                        <div className="frame-photo frame-photo--natural" style={image.transparent ? { background: 'transparent' } : undefined}>
                             <img src={image.src} alt={image.alt ?? title} />
                         </div>
                     </div>

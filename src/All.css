@@ -75,13 +75,6 @@ a { color: inherit; text-decoration: none; }
 @keyframes riseIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ================================================================
-   LANDING: DIVIDER
-   ================================================================ */
-.divider { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 6px var(--gutter) 0; }
-.divider .line { flex: 1; height: 1px; background: var(--rule); }
-.divider .mark { width: 6px; height: 6px; border: 1px solid var(--accent); transform: rotate(45deg); flex-shrink: 0; }
-
-/* ================================================================
    LANDING: PROJECT GRID
    ================================================================ */
 .project-grid {
@@ -147,32 +140,6 @@ a { color: inherit; text-decoration: none; }
 .frame-photo--natural { aspect-ratio: auto; }
 .frame-photo--natural img { height: auto; object-fit: contain; }
 
-/* ================================================================
-   HERO CAROUSEL
-   Crossfading framed slideshow with diamond indicator dots.
-   ================================================================ */
-.hero-carousel { animation: riseIn 0.5s ease 0.12s both; }
-/* smaller than the standard 75% frame */
-.hero-carousel .frame { width: 40%; }
-.hero-carousel .frame-photo { position: relative; }
-.hero-carousel .frame-photo img {
-  position: absolute; inset: 0;
-  opacity: 0; transition: opacity 0.7s ease;
-}
-.hero-carousel .frame-photo img.active { opacity: 1; }
-.hero-carousel-dots {
-  display: flex; justify-content: center; gap: 12px;
-  margin-top: 14px;
-}
-.hero-carousel-dot {
-  width: 7px; height: 7px; padding: 0;
-  background: transparent; border: 1px solid var(--accent);
-  transform: rotate(45deg); cursor: pointer;
-  transition: background 0.2s;
-}
-.hero-carousel-dot:hover { background: var(--rule); }
-.hero-carousel-dot.active { background: var(--accent); }
-
 .frame-video {
   aspect-ratio: 16 / 9;
   background: var(--ink);
@@ -200,11 +167,6 @@ footer a:hover { color: var(--accent); }
   padding: clamp(20px, 4vw, 36px) max(var(--gutter), 10%) 0;
 }
 .page-hero-inner { max-width: 800px; padding-bottom: 44px; }
-.page-hero-badge {
-  display: inline-block;
-  font-family: var(--body); font-style: italic; font-size: 0.85rem;
-  color: var(--accent); margin-bottom: 16px;
-}
 .page-hero h1 {
   font-family: var(--display); font-weight: 800;
   font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15;
@@ -287,8 +249,7 @@ footer a:hover { color: var(--accent); }
    TEMPLATE: ContentSection
 
    Each section is self-contained — it manages its own gutter padding.
-   The page wrapper (.page-body) adds NO horizontal padding so there
-   is no double-padding.
+   The page wrapper adds NO horizontal padding so there is no double-padding.
 
    Layouts (responsive, automatic):
      Desktop >=901px  — 2-col grid: text ~70% left, image ~30% right
@@ -428,6 +389,29 @@ footer a:hover { color: var(--accent); }
   font-style: italic; font-size: 1.05rem; color: var(--ink); max-width: none;
 }
 
+/* In-text PDF viewer */
+.pdf-viewer {
+  margin-top: 24px;
+  border: 1px solid var(--rule);
+}
+.pdf-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+.pdf-open-link {
+  display: block;
+  padding: 10px 16px;
+  background: var(--paper-dim);
+  border-top: 1px solid var(--rule);
+  font-family: var(--body); font-style: italic; font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: right;
+  transition: color 0.15s;
+}
+.pdf-open-link:hover { color: var(--accent); }
+
 /* Bullet lists inside ContentSection children */
 .content-section ul.body-list {
   list-style: none; margin: 0 0 18px; padding: 0;
@@ -471,16 +455,11 @@ footer a:hover { color: var(--accent); }
    PAGE BODY WRAPPER
    No horizontal padding — each ContentSection gutters itself.
    ================================================================ */
-.page-body {
-  /* intentionally empty — semantic wrapper only */
-}
-
 /* ================================================================
    REDUCED MOTION
    ================================================================ */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
-  /* riseIn animations start at opacity 0 — restore visibility, but leave
-     carousel slide opacity alone so the active-slide logic still works */
-  .project-tile, .hero h1, .hero p, .hero-carousel { opacity: 1 !important; }
+  /* riseIn animations start at opacity 0 — restore visibility */
+  .project-tile, .hero h1, .hero p { opacity: 1 !important; }
 }
