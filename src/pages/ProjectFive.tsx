@@ -68,7 +68,7 @@ export default function ProjectFive() {
                         </div>
 
                         <figure className="content-section-figure" style={{ marginTop: '32px' }}>
-                            <div className="frame frame--video">
+                            <div>
                                 <div className="frame-video">
                                     <iframe
                                         src="https://www.youtube.com/embed/9P7hzNfme7k"
