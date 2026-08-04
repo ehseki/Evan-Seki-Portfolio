@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header.tsx'
 import ScrollToTop from './components/ScrollToTop.tsx'
 import Landing from './Landing.tsx'
@@ -13,7 +13,7 @@ import ProjectSix from './pages/ProjectSix.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <HashRouter>
+        <BrowserRouter>
             <ScrollToTop />
             <Header />
             <div className="app-shell">
@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route path="/wairarapa" element={<ProjectSix />} />
                 </Routes>
             </div>
-        </HashRouter>
+        </BrowserRouter>
     </StrictMode>,
 )
 
