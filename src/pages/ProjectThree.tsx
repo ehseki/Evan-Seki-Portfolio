@@ -81,8 +81,8 @@ export default function ProjectThree() {
                         tightTop
                         heading="Mark Two (In progress)"
                         body={[
-                            "Pictured on the right is the redesigned motor cradle and battery mount. The pictured CAD is 90% complete, currently working through PLA test prints to ensure proper fitment, adding in missing hardware, and finalizing the remainging aestetic compnents such as wire management boxes.  Once completed, I will begin the final maunfacturing process.",
-                            "I was much more conscientious of the design decisions I made while creating this version. When desinging the bottom cradle I kept in mind that the component was stress member in the bike's frame. To ensure a safety factor of greater than two, which I understand is completly overkill in the automotive world, I uilized a topology optimization and static FEA to verify the parts strength."
+                            "Pictured on the right is the redesigned motor cradle and battery mount. The pictured CAD is 90% complete, currently working through PLA test prints to ensure proper fitment, adding in missing hardware, and finalizing the remainging aestetic components such as wire management boxes.  Once completed, I will begin the final maunfacturing process.",
+                            "I was much more conscientious of the design decisions I made while creating this version. When desinging the bottom cradle I kept in mind that the component was stress member in the bike's frame. To ensure a safety factor of greater than two I uilized a topology optimization and static FEA to verify the parts strength."
                         ]}
                         stackImages
                         tightBottom
