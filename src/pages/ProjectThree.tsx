@@ -76,11 +76,39 @@ export default function ProjectThree() {
                         
                     </section>
 
+
+                    <ContentSection
+                        tightTop
+                        heading="Mark Two (In progress)"
+                        body={[
+                            "Pictured on the right is the redesigned motor cradle and battery mount. The pictured CAD is 90% complete, currently working through PLA test prints to ensure proper fitment, adding in missing hardware, and finalizing the remainging aestetic compnents such as wire management boxes.  Once completed, I will begin the final maunfacturing process.",
+                            "I was much more conscientious of the design decisions I made while creating this version. When desinging the bottom cradle I kept in mind that the component was stress member in the bike's frame. To ensure a safety factor of greater than two, which I understand is completly overkill in the automotive world, I uilized a topology optimization and static FEA to verify the parts strength."
+                        ]}
+                        stackImages
+                        tightBottom
+                        images={[
+                            { src: asset("/project-three/mk2-90-cad.png"), caption: "MK 2 CAD.", framed: false, width: "85%", natural: true },
+                        ]}
+                    />
+                    <section className="content-section" style={{ paddingTop: '20px', paddingBottom: '52px' }}>
+                        <figure className="content-section-figure content-section-figure--plain">
+                            <div className="media-plain" style={{ width: '100%' }}>
+                                <div className="frame-photo frame-photo--natural">
+                                    <img src={asset("/project-three/mk2-bottom-bracket.png")} alt="Thigh and calf redesign process" />
+                                </div>
+                            </div>
+                            <figcaption>Redesigned bottom bracket using Topology Optimization for weight reduction and strength preservation.</figcaption>
+                        </figure>
+
+                    </section>
+
                     <section className="content-section" style={{ paddingTop: '4px' }}>
                         <p style={{ textAlign: 'center', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', margin: 0 }}>
-                            More updates to come!
+                            Full write up coming soon!
                         </p>
                     </section>
+                    
+
 
                 </div>
             </div>
