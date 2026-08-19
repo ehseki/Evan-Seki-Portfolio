@@ -12,7 +12,7 @@ export default function ProjectSix() {
         <>
             <PageHero
                 title="Plants Restoring Wairarapa Moana"
-                summary="During my junior year at WPI I spent two months abroad in Aotearoa New Zealand completing my Interactive Qualifying Project (IQP). During this time my team and I created a documentary investing the cultural value of the Wairarapa wetlands."
+                summary="During my junior year at WPI I spent two months abroad in Aotearoa New Zealand completing my Interactive Qualifying Project (IQP). During this time my team and I created a documentary investigating the cultural value of the Wairarapa wetlands."
                 image={{ src: asset("/project-six/wairarapa-team.jpg"), caption: "The project team with our collaborator Ian.", width: "95%" }}
             />
 
